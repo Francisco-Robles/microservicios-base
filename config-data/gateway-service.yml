@@ -45,10 +45,11 @@ spring:
             userinfo-uri: http://localhost:8180/realms/base-realm/protocol/openid-connect/userinfo
             user-name-attribute: preferred_username
             token-uri: http://localhost:8180/realms/base-realm/protocol/openid-connect/token
+            jwk-set-uri: http://localhost:8180/realms/base-realm/protocol/openid-connect/certs
         registration:
           base-client: 
             provider: keycloak
             client-id: base-client
             client-secret: 2cisZQkKTeQQEZ3VBSMdBHxk5qWjX6oe
             authorization-grant-type: authorization_code
-            redirect-uri: "{baseUrl}/login/oauth2/base-client"
+            redirect-uri: "{baseUrl}/login/oauth2/code/base-client"

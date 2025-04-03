@@ -11,7 +11,7 @@ import org.springframework.security.web.server.SecurityWebFilterChain;
 @EnableWebFluxSecurity
 public class SecurityConfiguration {
 
-    @Bean
+    /*@Bean
     public SecurityWebFilterChain filterChain(ServerHttpSecurity httpSecurity){
 
         httpSecurity.authorizeExchange().anyExchange().authenticated()
@@ -21,6 +21,18 @@ public class SecurityConfiguration {
 
         return httpSecurity.build();
 
+    }*/
+    @Bean
+    public SecurityWebFilterChain securityWebFilterChain(ServerHttpSecurity http) {
+        http
+                .authorizeExchange(exchange -> exchange
+                        .pathMatchers("/login/oauth2/**", "/oauth2/**").permitAll()
+                        .anyExchange().authenticated()
+                )
+                .oauth2Login(Customizer.withDefaults())
+                .csrf(ServerHttpSecurity.CsrfSpec::disable);
+
+        return http.build();
     }
 
 }
